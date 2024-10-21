@@ -348,6 +348,21 @@ public class ModEventHandlerClient {
 				if(time > animation.animation.getDuration())
 					HbmAnimations.hotbar[i][j] = null;
 			}
+=======
+
+			Animation animation = HbmAnimations.hotbar[i];
+
+			if(animation == null)
+				continue;
+
+			if(animation.holdLastFrame)
+				continue;
+
+			long time = System.currentTimeMillis() - animation.startMillis;
+
+			if(time > animation.animation.getDuration())
+				HbmAnimations.hotbar[i] = null;
+>>>>>>> Stashed changes
 		}
 
 		if(!ducked && Keyboard.isKeyDown(Keyboard.KEY_O) && Minecraft.getMinecraft().currentScreen == null) {
@@ -791,6 +806,20 @@ public class ModEventHandlerClient {
 				if(entry.entry == EnumEntryType.MULT)
 					list.add(EnumChatFormatting.GOLD + "Adds multiplier " + entry.value + " to the custom nuke stage " + entry.type);
 			}
+=======
+		CustomNukeEntry entry = TileEntityNukeCustom.entries.get(comp);
+
+		if(entry != null) {
+
+			if(!list.isEmpty())
+				list.add("");
+
+			if(entry.entry == EnumEntryType.ADD)
+				list.add(EnumChatFormatting.GOLD + "Adds " + entry.value + " to the custom nuke stage " + entry.type);
+
+			if(entry.entry == EnumEntryType.MULT)
+				list.add(EnumChatFormatting.GOLD + "Adds multiplier " + entry.value + " to the custom nuke stage " + entry.type);
+>>>>>>> Stashed changes
 		}
 
 		try {
@@ -1327,7 +1356,27 @@ public class ModEventHandlerClient {
         }
 
 	}
+<<<<<<< Updated upstream
+=======
+
+	/*@SubscribeEvent
+	public void setupFog(RenderFogEvent event) {
+		event.setResult(Result.DENY);
 	}
+
+	@SubscribeEvent
+	public void thickenFog(FogDensity event) {
+		event.density = 0.05F;
+		event.setCanceled(true);
+	}
+
+	@SubscribeEvent
+	public void tintFog(FogColors event) {
+		event.red = 0.5F;
+		event.green = 0.0F;
+		event.blue = 0.0F;
+	}*/
+>>>>>>> Stashed changes
 
 	public static IIcon particleBase;
 	public static IIcon particleLeaf;
@@ -1413,6 +1462,10 @@ public class ModEventHandlerClient {
 <<<<<<< Updated upstream
 		
 		if(event.gui instanceof GuiMainMenu && ClientConfig.MAIN_MENU_WACKY_SPLASHES.get()) {
+=======
+
+		if(event.gui instanceof GuiMainMenu) {
+>>>>>>> Stashed changes
 			GuiMainMenu main = (GuiMainMenu) event.gui;
 			int rand = (int)(Math.random() * 150);
 

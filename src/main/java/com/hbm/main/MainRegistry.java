@@ -666,7 +666,9 @@ public class MainRegistry {
 		});
 	}
 
+	@Mod.EventHandler
 	public static void load(FMLInitializationEvent event) {
+
 		RodRecipes.registerInit();
 
 		achSacrifice = new Achievement("achievement.sacrifice", "sacrifice", -3, 1, ModItems.burnt_bark, null).initIndependentStat().setSpecial().registerStat();
@@ -958,6 +960,8 @@ public class MainRegistry {
 		event.registerServerCommand(new CommandSatellites());
 		event.registerServerCommand(new CommandRadiation());
 	}
+
+	@Mod.EventHandler
 	public void serverStart(FMLServerStartedEvent event) {
 
 		if(GeneralConfig.enableStatReRegistering) {
@@ -1001,6 +1005,8 @@ public class MainRegistry {
 	private static HashSet<String> ignoreMappings = new HashSet();
 	private static HashMap<String, Item> remapItems = new HashMap();
 
+
+	@Mod.EventHandler
 	public void handleMissingMappings(FMLMissingMappingsEvent event) {
 
 		ignoreMappings.clear();
@@ -1433,6 +1439,7 @@ public class MainRegistry {
 		ignoreMappings.add("hbm:item.gas8");
 		ignoreMappings.add("hbm:tile.brick_forgotten");
 		ignoreMappings.add("hbm:tile.watz_conductor");
+<<<<<<< Updated upstream
 		ignoreMappings.add("hbm:item.flame_1");
 		ignoreMappings.add("hbm:item.flame_2");
 		ignoreMappings.add("hbm:item.flame_3");
@@ -1447,6 +1454,9 @@ public class MainRegistry {
 		ignoreMappings.add("hbm:tile.dummy_block_uf6");
 		ignoreMappings.add("hbm:tile.dummy_block_puf6");
 		
+=======
+
+>>>>>>> Stashed changes
 		/// REMAP ///
 		remapItems.put("hbm:item.gadget_explosive8", ModItems.early_explosive_lenses);
 		remapItems.put("hbm:item.man_explosive8", ModItems.explosive_lenses);
