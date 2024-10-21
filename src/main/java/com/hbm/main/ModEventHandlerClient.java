@@ -332,37 +332,21 @@ public class ModEventHandlerClient {
 		/// HANLDE ANIMATION BUSES ///
 
 		for(int i = 0; i < HbmAnimations.hotbar.length; i++) {
-<<<<<<< Updated upstream
 			for(int j = 0; j < HbmAnimations.hotbar[i].length; j++) {
-				
+
 				Animation animation = HbmAnimations.hotbar[i][j];
-				
+
 				if(animation == null)
 					continue;
-	
+
 				if(animation.holdLastFrame)
 					continue;
-				
+
 				long time = System.currentTimeMillis() - animation.startMillis;
-				
+
 				if(time > animation.animation.getDuration())
 					HbmAnimations.hotbar[i][j] = null;
 			}
-=======
-
-			Animation animation = HbmAnimations.hotbar[i];
-
-			if(animation == null)
-				continue;
-
-			if(animation.holdLastFrame)
-				continue;
-
-			long time = System.currentTimeMillis() - animation.startMillis;
-
-			if(time > animation.animation.getDuration())
-				HbmAnimations.hotbar[i] = null;
->>>>>>> Stashed changes
 		}
 
 		if(!ducked && Keyboard.isKeyDown(Keyboard.KEY_O) && Minecraft.getMinecraft().currentScreen == null) {
@@ -725,8 +709,8 @@ public class ModEventHandlerClient {
 			} else {
 
 				list.add(EnumChatFormatting.DARK_GRAY + "" + EnumChatFormatting.ITALIC +"Hold <" +
-						EnumChatFormatting.YELLOW + "" + EnumChatFormatting.ITALIC + "LSHIFT" +
-						EnumChatFormatting.DARK_GRAY + "" + EnumChatFormatting.ITALIC + "> to display protection info");
+					EnumChatFormatting.YELLOW + "" + EnumChatFormatting.ITALIC + "LSHIFT" +
+					EnumChatFormatting.DARK_GRAY + "" + EnumChatFormatting.ITALIC + "> to display protection info");
 			}
 		}
 
@@ -741,8 +725,8 @@ public class ModEventHandlerClient {
 			if(!Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) && !(Minecraft.getMinecraft().currentScreen instanceof GUIArmorTable)) {
 
 				list.add(EnumChatFormatting.DARK_GRAY + "" + EnumChatFormatting.ITALIC +"Hold <" +
-						EnumChatFormatting.YELLOW + "" + EnumChatFormatting.ITALIC + "LSHIFT" +
-						EnumChatFormatting.DARK_GRAY + "" + EnumChatFormatting.ITALIC + "> to display installed armor mods");
+					EnumChatFormatting.YELLOW + "" + EnumChatFormatting.ITALIC + "LSHIFT" +
+					EnumChatFormatting.DARK_GRAY + "" + EnumChatFormatting.ITALIC + "> to display installed armor mods");
 
 			} else {
 
@@ -762,13 +746,8 @@ public class ModEventHandlerClient {
 
 		/// HAZARDS ///
 		HazardSystem.addFullTooltip(stack, event.entityPlayer, list);
-<<<<<<< Updated upstream
-		
-		if(event.showAdvancedItemTooltips && ClientConfig.ITEM_TOOLTIP_SHOW_OREDICT.get()) {
-=======
 
-		if(event.showAdvancedItemTooltips) {
->>>>>>> Stashed changes
+		if(event.showAdvancedItemTooltips && ClientConfig.ITEM_TOOLTIP_SHOW_OREDICT.get()) {
 			List<String> names = ItemStackUtil.getOreDictNames(stack);
 
 			if(names.size() > 0) {
@@ -790,36 +769,21 @@ public class ModEventHandlerClient {
 
 		/// CUSTOM NUKE ///
 		ComparableStack comp = new ComparableStack(stack).makeSingular();
-<<<<<<< Updated upstream
-		
+
 		if(ClientConfig.ITEM_TOOLTIP_SHOW_CUSTOM_NUKE.get()) {
 			CustomNukeEntry entry = TileEntityNukeCustom.entries.get(comp);
-			
+
 			if(entry != null) {
-				
+
 				if(!list.isEmpty())
 					list.add("");
-				
+
 				if(entry.entry == EnumEntryType.ADD)
 					list.add(EnumChatFormatting.GOLD + "Adds " + entry.value + " to the custom nuke stage " + entry.type);
-	
+
 				if(entry.entry == EnumEntryType.MULT)
 					list.add(EnumChatFormatting.GOLD + "Adds multiplier " + entry.value + " to the custom nuke stage " + entry.type);
 			}
-=======
-		CustomNukeEntry entry = TileEntityNukeCustom.entries.get(comp);
-
-		if(entry != null) {
-
-			if(!list.isEmpty())
-				list.add("");
-
-			if(entry.entry == EnumEntryType.ADD)
-				list.add(EnumChatFormatting.GOLD + "Adds " + entry.value + " to the custom nuke stage " + entry.type);
-
-			if(entry.entry == EnumEntryType.MULT)
-				list.add(EnumChatFormatting.GOLD + "Adds multiplier " + entry.value + " to the custom nuke stage " + entry.type);
->>>>>>> Stashed changes
 		}
 
 		try {
@@ -958,15 +922,9 @@ public class ModEventHandlerClient {
 				MainRegistry.proxy.displayTooltip(EnumChatFormatting.RED + "Your mask has no filter!", MainRegistry.proxy.ID_FILTER);
 			}
 		}
-<<<<<<< Updated upstream
-		
+
 		if(Keyboard.isKeyDown(Keyboard.KEY_F1) && Minecraft.getMinecraft().currentScreen != null) {
-			
-=======
 
-		if(Keyboard.isKeyDown(Keyboard.KEY_F1)) {
-
->>>>>>> Stashed changes
 			ComparableStack comp = canneryTimestamp > System.currentTimeMillis() - 100 ? lastCannery : null;
 
 			if(comp == null) {
@@ -1168,7 +1126,7 @@ public class ModEventHandlerClient {
 			}
 
 			boolean gunKey = keyCode == HbmKeybinds.gunPrimaryKey.getKeyCode() || keyCode == HbmKeybinds.gunSecondaryKey.getKeyCode() ||
-					keyCode == HbmKeybinds.gunTertiaryKey.getKeyCode() || keyCode == HbmKeybinds.reloadKey.getKeyCode();
+				keyCode == HbmKeybinds.gunTertiaryKey.getKeyCode() || keyCode == HbmKeybinds.reloadKey.getKeyCode();
 
 			EntityPlayer player = mc.thePlayer;
 
@@ -1337,46 +1295,25 @@ public class ModEventHandlerClient {
 			}
 		}
 
-        if (prime != null && prime.vats) {
+		if (prime != null && prime.vats) {
 
-            int count = (int) Math.min(event.entity.getMaxHealth(), 100);
+			int count = (int) Math.min(event.entity.getMaxHealth(), 100);
 
-            int bars = (int) Math.ceil(event.entity.getHealth() * count / event.entity.getMaxHealth());
+			int bars = (int) Math.ceil(event.entity.getHealth() * count / event.entity.getMaxHealth());
 
-            String bar = EnumChatFormatting.RED + "";
+			String bar = EnumChatFormatting.RED + "";
 
-            for (int i = 0; i < count; i++) {
+			for (int i = 0; i < count; i++) {
 
-                if (i == bars)
-                    bar += EnumChatFormatting.RESET + "";
+				if (i == bars)
+					bar += EnumChatFormatting.RESET + "";
 
-                bar += "|";
-            }
-            RenderOverhead.renderTag(event.entity, event.x, event.y, event.z, event.renderer, bar, prime.thermal);
-        }
+				bar += "|";
+			}
+			RenderOverhead.renderTag(event.entity, event.x, event.y, event.z, event.renderer, bar, prime.thermal);
+		}
 
 	}
-<<<<<<< Updated upstream
-=======
-
-	/*@SubscribeEvent
-	public void setupFog(RenderFogEvent event) {
-		event.setResult(Result.DENY);
-	}
-
-	@SubscribeEvent
-	public void thickenFog(FogDensity event) {
-		event.density = 0.05F;
-		event.setCanceled(true);
-	}
-
-	@SubscribeEvent
-	public void tintFog(FogColors event) {
-		event.red = 0.5F;
-		event.green = 0.0F;
-		event.blue = 0.0F;
-	}*/
->>>>>>> Stashed changes
 
 	public static IIcon particleBase;
 	public static IIcon particleLeaf;
@@ -1459,30 +1396,25 @@ public class ModEventHandlerClient {
 
 	@SubscribeEvent
 	public void onOpenGUI(GuiOpenEvent event) {
-<<<<<<< Updated upstream
-		
-		if(event.gui instanceof GuiMainMenu && ClientConfig.MAIN_MENU_WACKY_SPLASHES.get()) {
-=======
 
-		if(event.gui instanceof GuiMainMenu) {
->>>>>>> Stashed changes
+		if(event.gui instanceof GuiMainMenu && ClientConfig.MAIN_MENU_WACKY_SPLASHES.get()) {
 			GuiMainMenu main = (GuiMainMenu) event.gui;
 			int rand = (int)(Math.random() * 150);
 
 			switch(rand) {
-			case 0: main.splashText = "Floppenheimer!"; break;
-			case 1: main.splashText = "i should dip my balls in sulfuric acid"; break;
-			case 2: main.splashText = "All answers are popbob!"; break;
-			case 3: main.splashText = "None may enter The Orb!"; break;
-			case 4: main.splashText = "Wacarb was here"; break;
-			case 5: main.splashText = "SpongeBoy me Bob I am overdosing on keramine agagagagaga"; break;
-			case 6: main.splashText = EnumChatFormatting.RED + "I know where you live, " + System.getProperty("user.name"); break;
-			case 7: main.splashText = "Nice toes, now hand them over."; break;
-			case 8: main.splashText = "I smell burnt toast!"; break;
-			case 9: main.splashText = "There are bugs under your skin!"; break;
-			case 10: main.splashText = "Fentanyl!"; break;
-			case 11: main.splashText = "Do drugs!"; break;
-			case 12: main.splashText = "Imagine being scared by splash texts!"; break;
+				case 0: main.splashText = "Floppenheimer!"; break;
+				case 1: main.splashText = "i should dip my balls in sulfuric acid"; break;
+				case 2: main.splashText = "All answers are popbob!"; break;
+				case 3: main.splashText = "None may enter The Orb!"; break;
+				case 4: main.splashText = "Wacarb was here"; break;
+				case 5: main.splashText = "SpongeBoy me Bob I am overdosing on keramine agagagagaga"; break;
+				case 6: main.splashText = EnumChatFormatting.RED + "I know where you live, " + System.getProperty("user.name"); break;
+				case 7: main.splashText = "Nice toes, now hand them over."; break;
+				case 8: main.splashText = "I smell burnt toast!"; break;
+				case 9: main.splashText = "There are bugs under your skin!"; break;
+				case 10: main.splashText = "Fentanyl!"; break;
+				case 11: main.splashText = "Do drugs!"; break;
+				case 12: main.splashText = "Imagine being scared by splash texts!"; break;
 			}
 
 			double d = Math.random();

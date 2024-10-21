@@ -845,12 +845,11 @@ public class ModBlocks {
 	public static Block struct_icf_core;
 
 	public static Block factory_titanium_hull;
-<<<<<<< Updated upstream
-=======
+
 	@Deprecated public static Block factory_titanium_furnace;
 	@Deprecated public static Block factory_titanium_conductor;
 
->>>>>>> Stashed changes
+
 	public static Block factory_advanced_hull;
 
 	public static Block cm_block;

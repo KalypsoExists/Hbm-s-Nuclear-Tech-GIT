@@ -874,13 +874,13 @@ public class ResourceManager {
 	public static final HashMap<String, BusAnimation> supershotty_anim = AnimationLoader.load(new ResourceLocation(RefStrings.MODID, "models/weapons/animations/supershotty.json"));
 	public static final HashMap<String, BusAnimation> benelli_anim = AnimationLoader.load(new ResourceLocation(RefStrings.MODID, "models/weapons/animations/benelli.json"));
 	public static final HashMap<String, BusAnimation> congolake_anim = AnimationLoader.load(new ResourceLocation(RefStrings.MODID, "models/weapons/animations/congolake.json"));
-<<<<<<< Updated upstream
+
 	public static final HashMap<String, BusAnimation> am180_anim = AnimationLoader.load(new ResourceLocation(RefStrings.MODID, "models/weapons/animations/am180.json"));
 	public static final HashMap<String, BusAnimation> flamethrower_anim = AnimationLoader.load(new ResourceLocation(RefStrings.MODID, "models/weapons/animations/flamethrower.json"));
-	
-=======
 
->>>>>>> Stashed changes
+
+
+
 	public static final IModelCustom lance = new HFRWavefrontObject(new ResourceLocation(RefStrings.MODID, "models/weapons/lance.obj"));
 
 	public static final IModelCustom grenade_frag = new HFRWavefrontObject(new ResourceLocation(RefStrings.MODID, "models/weapons/grenade_frag.obj"));
@@ -992,16 +992,16 @@ public class ResourceManager {
 	public static final ResourceLocation carbine_tex = new ResourceLocation(RefStrings.MODID, "textures/models/weapons/huntsman.png");
 	public static final ResourceLocation am180_tex = new ResourceLocation(RefStrings.MODID, "textures/models/weapons/am180.png");
 	public static final ResourceLocation liberator_tex = new ResourceLocation(RefStrings.MODID, "textures/models/weapons/liberator.png");
-<<<<<<< Updated upstream
+
 	public static final ResourceLocation flamethrower_tex = new ResourceLocation(RefStrings.MODID, "textures/models/weapons/flamethrower.png");
 	public static final ResourceLocation mike_hawk_tex = new ResourceLocation(RefStrings.MODID, "textures/models/weapons/lag.png");
 	public static final ResourceLocation uzi_tex = new ResourceLocation(RefStrings.MODID, "textures/models/weapons/uzi.png");
 	public static final ResourceLocation panzerschreck_tex = new ResourceLocation(RefStrings.MODID, "textures/models/weapons/panzerschreck.png");
 	public static final ResourceLocation g3_tex = new ResourceLocation(RefStrings.MODID, "textures/models/weapons/g3.png");
-	
-=======
 
->>>>>>> Stashed changes
+
+
+
 	public static final ResourceLocation lance_tex = new ResourceLocation(RefStrings.MODID, "textures/models/weapons/lance.png");
 
 	public static final ResourceLocation ff_gold = new ResourceLocation(RefStrings.MODID, "textures/models/weapons/ff/gold.png");

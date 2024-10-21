@@ -903,12 +903,12 @@ public class MainRegistry {
 
 		Compat.handleRailcraftNonsense();
 		SuicideThreadDump.register();
-<<<<<<< Updated upstream
-		CommandReloadClient.register();
-		
-=======
 
->>>>>>> Stashed changes
+		CommandReloadClient.register();
+
+
+
+
 		//ExplosionTests.runTest();
 	}
 
@@ -1439,7 +1439,7 @@ public class MainRegistry {
 		ignoreMappings.add("hbm:item.gas8");
 		ignoreMappings.add("hbm:tile.brick_forgotten");
 		ignoreMappings.add("hbm:tile.watz_conductor");
-<<<<<<< Updated upstream
+
 		ignoreMappings.add("hbm:item.flame_1");
 		ignoreMappings.add("hbm:item.flame_2");
 		ignoreMappings.add("hbm:item.flame_3");
@@ -1453,10 +1453,10 @@ public class MainRegistry {
 		ignoreMappings.add("hbm:item.flame_10");
 		ignoreMappings.add("hbm:tile.dummy_block_uf6");
 		ignoreMappings.add("hbm:tile.dummy_block_puf6");
-		
-=======
 
->>>>>>> Stashed changes
+
+
+
 		/// REMAP ///
 		remapItems.put("hbm:item.gadget_explosive8", ModItems.early_explosive_lenses);
 		remapItems.put("hbm:item.man_explosive8", ModItems.explosive_lenses);
