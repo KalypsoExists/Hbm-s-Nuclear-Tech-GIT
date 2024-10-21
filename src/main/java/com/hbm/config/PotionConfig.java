@@ -18,9 +18,9 @@ public class PotionConfig {
 	public static int stabilityID = 71;
 	public static int potionsicknessID = 72;
 	public static int deathID = 72;
-	
+
 	public static int potionSickness = 0;
-	
+
 	public static void loadFromConfig(Configuration config) {
 
 		final String CATEGORY_POTION = CommonConfig.CATEGORY_POTION;
@@ -37,12 +37,7 @@ public class PotionConfig {
 		potionsicknessID = CommonConfig.createConfigInt(config, CATEGORY_POTION, "8.10_potionsicknessID", "What potion ID the potion sickness effect will have", 72);
 		deathID = CommonConfig.createConfigInt(config, CATEGORY_POTION, "8.11_deathID", "What potion ID the death effect will have", 73);
 
-		String s = CommonConfig.createConfigString(config, CATEGORY_POTION, "8.S0_potionSickness", "Valid configs include \"NORMAL\" and \"TERRARIA\", otherwise potion sickness is turned off", "OFF");
+		potionSickness = CommonConfig.createConfigInt(config, CATEGORY_POTION, "8.S0_potionSickness", "Potion sickness multiplier, 0 to disable", 0);
 
-		if("normal".equals(s.toLowerCase(Locale.US)))
-			potionSickness = 1;
-		if("terraria".equals(s.toLowerCase(Locale.US)))
-			potionSickness = 2;
-		
 	}
 }

@@ -36,7 +36,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 public class ItemToolAbility extends ItemTool implements IItemAbility, IDepthRockTool {
-	
+
 	protected boolean isShears = false;
 	protected EnumToolType toolType;
 	protected EnumRarity rarity = EnumRarity.common;
@@ -45,9 +45,9 @@ public class ItemToolAbility extends ItemTool implements IItemAbility, IDepthRoc
 	protected double movement;
 	protected List<ToolAbility> breakAbility = new ArrayList() {{ add(null); }};
 	protected List<WeaponAbility> hitAbility = new ArrayList();
-	
+
 	public static enum EnumToolType {
-		
+
 		PICKAXE(
 				Sets.newHashSet(new Material[] { Material.iron, Material.anvil, Material.rock, Material.glass }),
 				Sets.newHashSet(new Block[] { Blocks.cobblestone, Blocks.double_stone_slab, Blocks.stone_slab, Blocks.stone, Blocks.sandstone, Blocks.mossy_cobblestone, Blocks.iron_ore, Blocks.iron_block, Blocks.coal_ore, Blocks.gold_block, Blocks.gold_ore, Blocks.diamond_ore, Blocks.diamond_block, Blocks.ice, Blocks.netherrack, Blocks.lapis_ore, Blocks.lapis_block, Blocks.redstone_ore, Blocks.lit_redstone_ore, Blocks.rail, Blocks.detector_rail, Blocks.golden_rail, Blocks.activator_rail })
@@ -62,7 +62,11 @@ public class ItemToolAbility extends ItemTool implements IItemAbility, IDepthRoc
 		),
 		MINER(
 				Sets.newHashSet(new Material[] { Material.grass, Material.iron, Material.anvil, Material.glass, Material.rock, Material.clay, Material.sand, Material.ground, Material.snow, Material.craftedSnow })
+		),
+		NONE(
+			    Sets.newHashSet()
 		);
+		private EnumToolType() {}
 
 		private EnumToolType(Set<Material> materials) {
 			this.materials = materials;
@@ -76,7 +80,7 @@ public class ItemToolAbility extends ItemTool implements IItemAbility, IDepthRoc
 		public Set<Material> materials = new HashSet();
 		public Set<Block> blocks = new HashSet();
 	}
-	
+
 	public ItemToolAbility setShears() {
 		this.isShears = true;
 		return this;
@@ -87,7 +91,7 @@ public class ItemToolAbility extends ItemTool implements IItemAbility, IDepthRoc
 		this.damage = damage;
 		this.movement = movement;
 		this.toolType = type;
-		
+
 		// hacky workaround, might be good to rethink this entire system
 		if(type == EnumToolType.MINER) {
 			this.setHarvestLevel("pickaxe", material.getHarvestLevel());
@@ -227,7 +231,7 @@ public class ItemToolAbility extends ItemTool implements IItemAbility, IDepthRoc
 	}
 
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		
+
 		if(world.isRemote || this.breakAbility.size() < 2 || !canOperate(stack))
 			return super.onItemRightClick(stack, world, player);
 
@@ -255,7 +259,7 @@ public class ItemToolAbility extends ItemTool implements IItemAbility, IDepthRoc
 		}
 
 		world.playSoundAtEntity(player, "random.orb", 0.25F, getCurrentAbility(stack) == null ? 0.75F : 1.25F);
-		
+
 		return stack;
 	}
 

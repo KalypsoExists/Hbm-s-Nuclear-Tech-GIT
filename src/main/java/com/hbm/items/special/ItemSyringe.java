@@ -3,6 +3,7 @@ package com.hbm.items.special;
 import java.util.List;
 import java.util.Random;
 
+import com.hbm.config.ToolConfig;
 import com.hbm.config.VersatileConfig;
 import com.hbm.extprop.HbmLivingProps;
 import com.hbm.handler.ArmorModHandler;
@@ -15,6 +16,7 @@ import com.hbm.potion.HbmPotion;
 import api.hbm.fluid.IFillableItem;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,6 +33,13 @@ public class ItemSyringe extends Item {
 
 	Random rand = new Random();
 
+	private int cooldown = 0;
+
+	@Override
+	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_) {
+		if(cooldown != 0) cooldown--;
+	}
+
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 
@@ -41,14 +50,17 @@ public class ItemSyringe extends Item {
 				stack.stackSize--;
 				world.playSoundAtEntity(player, "hbm:item.syringe", 1.0F, 1.0F);
 
+
 				if(stack.stackSize <= 0) {
 					return new ItemStack(ModItems.syringe_empty);
 				}
 
+				if(!handleCoolDown(ToolConfig.antidoteCooldown)) return stack;
+
 				if(!player.inventory.addItemStackToInventory(new ItemStack(ModItems.syringe_empty))) {
 					player.dropPlayerItemWithRandomChoice(new ItemStack(ModItems.syringe_empty, 1, 0), false);
 				}
-			
+
 				VersatileConfig.applyPotionSickness(player, 5);
 			}
 		}
@@ -67,6 +79,8 @@ public class ItemSyringe extends Item {
 				player.addPotionEffect(new PotionEffect(Potion.confusion.id, 5 * 20, 4));
 				player.addPotionEffect(new PotionEffect(HbmPotion.radx.id, 50 * 20, 9));
 
+				if(!handleCoolDown(ToolConfig.awesomeCooldown)) return stack;
+
 				stack.stackSize--;
 				world.playSoundAtEntity(player, "hbm:item.syringe", 1.0F, 1.0F);
 
@@ -77,7 +91,7 @@ public class ItemSyringe extends Item {
 				if(!player.inventory.addItemStackToInventory(new ItemStack(ModItems.syringe_empty))) {
 					player.dropPlayerItemWithRandomChoice(new ItemStack(ModItems.syringe_empty, 1, 0), false);
 				}
-			
+
 				VersatileConfig.applyPotionSickness(player, 50);
 			}
 		}
@@ -96,6 +110,8 @@ public class ItemSyringe extends Item {
 					return new ItemStack(ModItems.syringe_empty);
 				}
 
+				if(!handleCoolDown(ToolConfig.poisonCooldown)) return stack;
+
 				if(!player.inventory.addItemStackToInventory(new ItemStack(ModItems.syringe_empty))) {
 					player.dropPlayerItemWithRandomChoice(new ItemStack(ModItems.syringe_empty, 1, 0), false);
 				}
@@ -113,20 +129,25 @@ public class ItemSyringe extends Item {
 					return new ItemStack(ModItems.syringe_metal_empty);
 				}
 
+				if(!handleCoolDown(ToolConfig.stimpakCooldown)) return stack;
+
 				if(!player.inventory.addItemStackToInventory(new ItemStack(ModItems.syringe_metal_empty))) {
 					player.dropPlayerItemWithRandomChoice(new ItemStack(ModItems.syringe_metal_empty, 1, 0), false);
 				}
-				
+
 				VersatileConfig.applyPotionSickness(player, 5);
 			}
 		}
 
 		if(this == ModItems.syringe_metal_medx && !VersatileConfig.hasPotionSickness(player)) {
 			if(!world.isRemote) {
+
 				player.addPotionEffect(new PotionEffect(Potion.resistance.id, 4 * 60 * 20, 2));
 
 				stack.stackSize--;
 				world.playSoundAtEntity(player, "hbm:item.syringe", 1.0F, 1.0F);
+
+				if(!handleCoolDown(ToolConfig.medxCooldown)) return stack;
 
 				if(stack.stackSize <= 0) {
 					return new ItemStack(ModItems.syringe_metal_empty);
@@ -135,7 +156,7 @@ public class ItemSyringe extends Item {
 				if(!player.inventory.addItemStackToInventory(new ItemStack(ModItems.syringe_metal_empty))) {
 					player.dropPlayerItemWithRandomChoice(new ItemStack(ModItems.syringe_metal_empty, 1, 0), false);
 				}
-				
+
 				VersatileConfig.applyPotionSickness(player, 5);
 			}
 		}
@@ -152,10 +173,12 @@ public class ItemSyringe extends Item {
 					return new ItemStack(ModItems.syringe_metal_empty);
 				}
 
+				if(!handleCoolDown(ToolConfig.psychoCooldown)) return stack;
+
 				if(!player.inventory.addItemStackToInventory(new ItemStack(ModItems.syringe_metal_empty))) {
 					player.dropPlayerItemWithRandomChoice(new ItemStack(ModItems.syringe_metal_empty, 1, 0), false);
 				}
-				
+
 				VersatileConfig.applyPotionSickness(player, 5);
 			}
 		}
@@ -172,10 +195,12 @@ public class ItemSyringe extends Item {
 					return new ItemStack(ModItems.syringe_metal_empty);
 				}
 
+				if(!handleCoolDown(ToolConfig.superCooldown)) return stack;
+
 				if(!player.inventory.addItemStackToInventory(new ItemStack(ModItems.syringe_metal_empty))) {
 					player.dropPlayerItemWithRandomChoice(new ItemStack(ModItems.syringe_metal_empty, 1, 0), false);
 				}
-				
+
 				VersatileConfig.applyPotionSickness(player, 15);
 			}
 		}
@@ -193,7 +218,9 @@ public class ItemSyringe extends Item {
 				player.removePotionEffect(Potion.weakness.id);
 				player.removePotionEffect(Potion.wither.id);
 				player.removePotionEffect(HbmPotion.radiation.id);
-				
+
+				if(!handleCoolDown(ToolConfig.medbagCooldown)) return stack;
+
 				VersatileConfig.applyPotionSickness(player, 15);
 
 				stack.stackSize--;
@@ -203,6 +230,8 @@ public class ItemSyringe extends Item {
 		if(this == ModItems.radaway) {
 			if(!world.isRemote) {
 				player.addPotionEffect(new PotionEffect(HbmPotion.radaway.id, 14, 9));
+
+				if(!handleCoolDown(ToolConfig.radAwayCooldown)) return stack;
 
 				stack.stackSize--;
 				world.playSoundAtEntity(player, "hbm:item.radaway", 1.0F, 1.0F);
@@ -222,6 +251,8 @@ public class ItemSyringe extends Item {
 					player.addPotionEffect(new PotionEffect(HbmPotion.radaway.id, d, level));
 				}
 
+				if(!handleCoolDown(ToolConfig.strongRadAwayCooldown)) return stack;
+
 				stack.stackSize--;
 				world.playSoundAtEntity(player, "hbm:item.radaway", 1.0F, 1.0F);
 			}
@@ -230,6 +261,8 @@ public class ItemSyringe extends Item {
 		if(this == ModItems.radaway_flush) {
 			if(!world.isRemote) {
 				player.addPotionEffect(new PotionEffect(HbmPotion.radaway.id, 50, 19));
+
+				if(!handleCoolDown(ToolConfig.radAwayFlushCooldown)) return stack;
 
 				stack.stackSize--;
 				world.playSoundAtEntity(player, "hbm:item.radaway", 1.0F, 1.0F);
@@ -283,12 +316,12 @@ public class ItemSyringe extends Item {
 					return stack;
 
 				IFillableItem fillable = (IFillableItem) jetpack.getItem();
-				
+
 				if(!fillable.acceptsFluid(Fluids.KEROSENE, jetpack))
 					return stack;
-				
+
 				fillable.tryFill(Fluids.KEROSENE, 1000, jetpack);
-				
+
 				if(jetpack.getItem() != player.inventory.armorInventory[2].getItem())
 					ArmorModHandler.applyMod(player.inventory.armorInventory[2], jetpack);
 
@@ -345,6 +378,13 @@ public class ItemSyringe extends Item {
 		return stack;
 	}
 
+	private boolean handleCoolDown(int duration) {
+		// false -> cool down isn't over
+		if(cooldown != 0) return false;
+		if(duration != 0) cooldown = duration;
+		return true;
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack p_77636_1_) {
@@ -386,11 +426,11 @@ public class ItemSyringe extends Item {
 
 		if(this == ModItems.syringe_awesome && !VersatileConfig.hasPotionSickness(entity)) {
 			if(!world.isRemote) {
-				
+
 				if(entity instanceof EntityCow) {
-					
+
 					entity.addPotionEffect(new PotionEffect(HbmPotion.bang.id, 40, 0));
-					
+
 				} else  {
 					entity.addPotionEffect(new PotionEffect(Potion.regeneration.id, 50 * 20, 9));
 					entity.addPotionEffect(new PotionEffect(Potion.resistance.id, 50 * 20, 9));
@@ -592,7 +632,7 @@ public class ItemSyringe extends Item {
 		if(this == ModItems.gun_kit_2) {
 			list.add("Repairs all weapons in hotbar by 50%");
 		}
-		
+
 		if(this == ModItems.syringe_mkunicorn) {
 			list.add(EnumChatFormatting.RED + "?");
 		}

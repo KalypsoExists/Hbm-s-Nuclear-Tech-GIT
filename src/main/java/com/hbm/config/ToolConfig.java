@@ -18,7 +18,19 @@ public class ToolConfig {
 	public static boolean abilityCrystallizer = true;
 	public static boolean abilityMercury = true;
 	public static boolean abilityExplosion = true;
-	
+
+	public static int stimpakCooldown = 30;
+	public static int medbagCooldown = 60;
+	public static int superCooldown = 60;
+	public static int awesomeCooldown = 60;
+	public static int psychoCooldown = 60;
+	public static int medxCooldown = 30;
+	public static int radAwayCooldown = 20;
+	public static int strongRadAwayCooldown = 40;
+	public static int poisonCooldown = 30;
+	public static int antidoteCooldown = 50;
+	public static int radAwayFlushCooldown = 30;
+
 	public static void loadFromConfig(Configuration config) {
 
 		final String CATEGORY_TOOLS = CommonConfig.CATEGORY_TOOLS;
@@ -36,5 +48,17 @@ public class ToolConfig {
 		abilityCrystallizer = config.get(CATEGORY_TOOLS, "11.10_abilityCrystallizer", true, "Allow auto-crystallizer ability").getBoolean(true);
 		abilityMercury = config.get(CATEGORY_TOOLS, "11.11_abilityMercury", true, "Allow mercury touch ability (digging redstone gives mercury)").getBoolean(true);
 		abilityExplosion = config.get(CATEGORY_TOOLS, "11.12_abilityExplosion", true, "Allow explosion ability").getBoolean(true);
+
+		stimpakCooldown = CommonConfig.createConfigInt(config, CATEGORY_TOOLS, "11.13_stimpakCooldown", "Syringe consumable cooldowns, 0 to disable", 30);
+		medbagCooldown = CommonConfig.createConfigInt(config, CATEGORY_TOOLS, "11.14_medBagCooldown", "", 60);
+		superCooldown = CommonConfig.createConfigInt(config, CATEGORY_TOOLS, "11.15_superSyringeCooldown", "", 60);
+		awesomeCooldown = CommonConfig.createConfigInt(config, CATEGORY_TOOLS, "11.16_awesomeSyringeCooldown", "", 60);
+		psychoCooldown = CommonConfig.createConfigInt(config, CATEGORY_TOOLS, "11.17_psychoSyringeCooldown", "", 60);
+		medxCooldown = CommonConfig.createConfigInt(config, CATEGORY_TOOLS, "11.18_medXCooldown", "", 30);
+		radAwayCooldown = CommonConfig.createConfigInt(config, CATEGORY_TOOLS, "11.19_radAwayCooldown", "", 20);
+		strongRadAwayCooldown = CommonConfig.createConfigInt(config, CATEGORY_TOOLS, "11.20_strongRadAwayCooldown", "", 40);
+		poisonCooldown = CommonConfig.createConfigInt(config, CATEGORY_TOOLS, "11.21_poisonCooldown", "", 30);
+		antidoteCooldown = CommonConfig.createConfigInt(config, CATEGORY_TOOLS, "11.22_antidoteCooldown", "", 50);
+		radAwayFlushCooldown = CommonConfig.createConfigInt(config, CATEGORY_TOOLS, "11.23_radAwayFlushCooldown", "", 30);
 	}
 }

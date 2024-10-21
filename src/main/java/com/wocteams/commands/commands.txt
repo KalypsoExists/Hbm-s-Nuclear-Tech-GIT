@@ -1,0 +1,31 @@
+/axis region create <type> <name>
+(region.<type>.max.1) Limits amount of regions a player can make for a type
+(region.max.1) Limits total amount of regions regardless of type
+
+/sector create
+/sector invite
+/sector delete
+/sector info -> Raid window, Peak active, Active members, Inactive members, total members, claim size
+/sector claim
+
+- /sector rank edit <rank> add/remove <permission>
+- /sector rank edit <rank> info
+- /sector rank edit <rank> prefix <string>
+- /sector rank edit <rank> weight <int>
+- /sector rank create/delete <name>
+- /sector rank give/take <rank> <member>
+
+- /sector member add/remove <permission>
+- /sector member info #
+
+/sector
+/sector jail <member> (cell)
+/sector pardon <member>
+/sector banish <player>
+
+But what if I want to add a member of another sector to a plot in my sector?
+Should the members list in a plot be based on a pre check for who is being added?
+So we limit it to someone part of the team
+
+/plot set jail
+/plot member add
